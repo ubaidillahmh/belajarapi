@@ -23,7 +23,7 @@ class MhsController extends Controller
 
     	if($datamhs->isEmpty())
     	{
-    		return $this->responHelper->errorCustom('404', 'Data Mahasiswa tidak ada');
+    		return $this->responHelper->errorCustom(404, 'Data Mahasiswa tidak ada');
     	}
 
     	return $this->responHelper->successWithData($datamhs);
@@ -35,7 +35,7 @@ class MhsController extends Controller
 
     	if($datamhs == null)
     	{
-    		return $this->responHelper->errorCustom('404', 'Not Found');
+    		return $this->responHelper->errorCustom(404, 'Not Found');
     	}
 
     	return $this->responHelper->successWithData($datamhs);
@@ -53,7 +53,7 @@ class MhsController extends Controller
     	{
     		$errors = $validation->errors();
 
-    		return $this->responHelper->errorWithInfo('406', $errors);
+    		return $this->responHelper->errorWithInfo(406, $errors);
     	}
     	// echo json_encode($request->nim);die;
 
@@ -80,7 +80,7 @@ class MhsController extends Controller
     		return $this->responHelper->successWithoutData('Data berhasil dihapus');
     	}else
     	{
-    		return $this->responHelper->errorCustom('406', 'Data tidak ditemukan');
+    		return $this->responHelper->errorCustom(406, 'Data tidak ditemukan');
     	}
     }
 }

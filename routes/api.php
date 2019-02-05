@@ -17,7 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/mhs/get', 'Api\MhsController@getmhs')->name('get-mhs');
-Route::get('/mhs/nim/{id}', 'Api\MhsController@getnim')->name('get-nim');
-Route::post('/mhs/add', 'Api\MhsController@addmhs')->name('add-mhs');
-Route::get('/mhs/del/{id}', 'Api\MhsController@delmhs')->name('del-mhs');
+Route::post('login', 'Api\UserController@login')->name('user-login');
+
+Route::group(['middleware' => ['authjwt']], function(){
+
+	Route::get('/mhs/get', 'Api\MhsController@getmhs')->name('get-mhs');
+	Route::get('/mhs/nim/{id}', 'Api\MhsController@getnim')->name('get-nim');
+	Route::post('/mhs/add', 'Api\MhsController@addmhs')->name('add-mhs');
+	Route::get('/mhs/del/{id}', 'Api\MhsController@delmhs')->name('del-mhs');
+
+});
+
