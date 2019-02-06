@@ -51,9 +51,10 @@ class MhsController extends Controller
 							    ]);
     	if($validation->fails())
     	{
-    		$errors = $validation->errors();
+    		// $errors = $validation->errors();
 
-    		return $this->responHelper->errorWithInfo(406, $errors);
+    		// return $this->responHelper->errorWithInfo(406, $errors);
+               return $validation;
     	}
     	// echo json_encode($request->nim);die;
 
@@ -67,6 +68,32 @@ class MhsController extends Controller
 
     	return $this->responHelper->successWithData($insert);
     	
+    }
+
+    public function updatemhs(Request $request, $id)
+    {
+        $validation = Validator::make($request->all(),[ 
+                                    'nim' => 'required|numeric|digits:8',
+                                    'nama' => 'required',
+                                    'angkatan' => 'required|numeric|digits:4',
+                                ]);
+        if($validation->fails())
+        {
+            // $errors = $validation->errors();
+
+            // return $this->responHelper->errorWithInfo(406, $errors);
+               return $validation;
+        }
+
+        $update = Mhs::where('nim', $id)->first();
+
+        $update->nim = $request->nim;
+        $update->nama = $request->nama;
+        // $update->angkatan = $request->angkatan;
+
+        $update->save();
+
+        return $this->responHelper->successWithData($update);
     }
 
     public function delmhs($id)
