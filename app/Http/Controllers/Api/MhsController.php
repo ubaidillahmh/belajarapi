@@ -51,10 +51,10 @@ class MhsController extends Controller
 							    ]);
     	if($validation->fails())
     	{
-    		// $errors = $validation->errors();
+    		$errors = $validation->errors();
 
-    		// return $this->responHelper->errorWithInfo(406, $errors);
-               return $validation;
+    		return $this->responHelper->errorWithInfo(406, $errors);
+               // return $validation;
     	}
     	// echo json_encode($request->nim);die;
 
@@ -79,10 +79,10 @@ class MhsController extends Controller
                                 ]);
         if($validation->fails())
         {
-            // $errors = $validation->errors();
+            $errors = $validation->errors();
 
-            // return $this->responHelper->errorWithInfo(406, $errors);
-               return $validation;
+            return $this->responHelper->errorWithInfo(406, $errors);
+               // return $validation;
         }
 
         $update = Mhs::where('nim', $id)->first();
@@ -98,7 +98,7 @@ class MhsController extends Controller
 
     public function delmhs($id)
     {
-    	$data = Mhs::find($id);
+    	$data = Mhs::where('nim', $id)->first();
 
     	if($data)
     	{

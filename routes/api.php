@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Api\UserController@login')->name('user-login');
 
+
 Route::group(['middleware' => ['authjwt']], function(){
 
 	Route::get('/mhs/get', 'Api\MhsController@getmhs')->name('get-mhs');
